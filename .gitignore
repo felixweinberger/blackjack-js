@@ -1,3 +1,7 @@
+# local working files
+.DS_Store
+*.sublime-workspace
+
 # Logs
 logs
 *.log
