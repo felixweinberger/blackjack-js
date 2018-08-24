@@ -1,0 +1,21 @@
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
+
+.game-area {
+	height: 100%;
+	width: 100%;
+}
+
+.test-box {
+	height: 100%;
+    padding: 0px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    background: #dbdfe5;
+}
+
