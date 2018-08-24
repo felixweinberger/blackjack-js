@@ -1,21 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
+  min-height: 70%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 70vh; 
   display: flex;
   align-items: center;
 }
 
 .game-area {
-	height: 100%;
+  padding: 10px 10px 10px;
+  height: 100%;
 	width: 100%;
+}
+
+.dealer-area {
+  height: 30vh;
+}
+
+.player-area {
+  height: 30vh;
+}
+
+.score-area {
+  height: 10vh;
 }
 
 .test-box {
 	height: 100%;
-    padding: 0px;
-    font-size: 32px;
-    font-weight: bold;
-    text-align: center;
-    background: #dbdfe5;
+  padding: 0px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  background: #dbdfe5;
+  display: block;
 }
 
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

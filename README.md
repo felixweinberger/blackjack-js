@@ -12,11 +12,11 @@ A simple blackjack game without betting.
 
 ## Running the game locally
 
-To run the game on your local machine...
+To run the game on your local machine... TODO
 
 ## Developing the game
 
-This repository includes a vagrant configuration...
+This repository includes a vagrant configuration... TODO
 
 ## Project structure
 
