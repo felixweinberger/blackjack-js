@@ -40,7 +40,7 @@
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav mr-auto">
 		      <li class="nav-item">
-		        <a class="nav-link" href="https://github.com/felixweinberger/blackjack">Github</a>
+		        <a class="nav-link" target="_blank" href="https://github.com/felixweinberger/blackjack">Github</a>
 		      </li>
 		  </div>
 		</nav>
@@ -48,43 +48,65 @@
 		<!-- Game area -->
 		<div class="game-area vertical-center">
 			<div class="container">
+
+				<!-- Dealer area -->
 			  <div class="row dealer-area no-gutters">
-			    <div class="col-8">
-			      <span class="test-box border border-primary">Dealer</span>
+
+			  	<!-- Dealer cards -->
+			    <div class="col-8 dealer-cards">
+			    	<div class="vcenter"><img src="img/cardBack2.png" width="128"></div>
 			    </div>
-			    <div class="col-4">
-			      <span class="test-box border border-primary">Deck</span>
+
+			    <!-- Deck -->
+			    <div class="col-4 deck-area text-center">
+			    	<div class="vcenter"><img src="img/cardBack2.png" width="128"></div>
 			    </div>
-			  </div>
+
+			  </div> <!-- End of dealer area -->
+
+			  <!-- Player area -->
 			  <div class="row player-area no-gutters">
-			    <div class="col-8">
-			      <span class="test-box border border-primary">Player</span>
+
+			  	<!-- Player cards -->
+			    <div class="col-8 player-cards">
+			    	<div class="vcenter"><img src="img/KH.png" width="128"></div>
 			    </div>
+
+			    <!-- Buttons -->
 			    <div class="col-4 container">
 				    <div class="row player-area">
-					    <div class="col-12">
-					      <span class="test-box border border-primary">Hit</span>
+					    <div class="col-12 player-hit">
+				      	<div class="vcenter">
+					      	<button type="button" class="btn btn-primary btn-block border border-light shadow">Hit (h)</button>
+				      	</div>
 					    </div>
-					    <div class="col-12">
-					      <span class="test-box border border-primary">Stand</span>
+					    <div class="col-12 player-stand">
+				      	<div class="vcenter">
+					      	<button type="button" class="btn btn-primary btn-block border border-light shadow">Stand (space)</button>
+				      	</div>
 					    </div>
 					  </div>
 			    </div>
-			  </div>
+
+			  </div> <!-- End of player area -->
+
+			  <!-- Score area -->
 			  <div class="row score-area no-gutters">
-			    <div class="col-4">
-			      <span class="test-box border border-primary">Played</span>
+			    <div class="col-6 score">
+						<div class="vcenter">
+							<p>Played: <span id="games-played"></span></p>
+						</div>
 			    </div>
-			    <div class="col-4">
-			      <span class="test-box border border-primary">Won</span>
+			    <div class="col-6 score">
+						<div class="vcenter">
+							<p>Won: <span id="games-won"></span></p>
+						</div>
 			    </div>
-			    <div class="col-4">
-			      <span class="test-box border border-primary">Win percentage</span>
-			    </div>
-			  </div>
-			</div>
+			  </div> <!-- End of score area -->
+
+			</div> <!-- End of game area -->
 			
-		</div>
+		</div> <!-- End of site -->
 
 		<!-- jQuery, Popper, Bootstrap -->
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
