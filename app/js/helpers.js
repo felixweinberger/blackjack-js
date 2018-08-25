@@ -1,5 +1,5 @@
 /**
- * Helper functions for underlying game logic
+ * Helper functions for game logic
  */
 
 const CARD_SET = {
@@ -26,12 +26,6 @@ class Card {
     this.cardString = cardString;
     this.image = image;
   }
-}
-
-function drawGameState(gameBoard) {
-  // draws the game state to the DOM
-  // returns 0 if completed successfully
-  // clear
 }
 
 function initializeNewGameBoard() {
