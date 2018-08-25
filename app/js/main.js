@@ -19,30 +19,40 @@ $(document).ready(function(){
   };
 
   id.newButton.click(function() {
+    if (!gameBoard.roundFinished) {
+      return 0;
+    }
+
     newRound(gameBoard);
     drawGameBoard(gameBoard, id);
-  })
+  });
 
   id.hitButton.click(function() {
-    if (hasPlayerLost(gameBoard)) {
-      return;
+    if (gameBoard.roundFinished) {
+      return 0;
     }
+
     gameBoard.playerHand.push(drawCards(gameBoard.deck, 1)[0]);
     gameBoard.playerScore = scoreHand(gameBoard.playerHand);
+    if (hasPlayerLost(gameBoard)) {
+      gameBoard.roundFinished = true;
+    }
+
     drawGameBoard(gameBoard, id);
-  })
+  });
 
   id.standButton.click(function() {
+    if (gameBoard.roundFinished) {
+      return 0;
+    }
+
     while (doesDealerHit(gameBoard.dealerHand)) {
       gameBoard.dealerHand.push(drawCards(gameBoard.deck, 1)[0]);
     }
     gameBoard.dealerScore = scoreHand(gameBoard.dealerHand);
-    if (hasPlayerWon(gameBoard)) {
-      gameBoard.playerWins += 1;
-      gameBoard.playerGames += 1;
-    }
+    gameBoard.roundFinished = true;
     drawGameBoard(gameBoard, id);
-  })
+  });
 
 });
 
@@ -60,6 +70,7 @@ class GameBoard {
     this.playerScore = 0;
     this.playerWins = 0;
     this.playerGames = 0;
+    this.roundFinished = true;
   }
 }
 
@@ -73,6 +84,7 @@ class Card {
 }
 
 function newRound(gameBoard) {
+  gameBoard.roundFinished = false;
   gameBoard.dealerHand = drawCards(gameBoard.deck, 1);
   gameBoard.playerHand = drawCards(gameBoard.deck, 2);
   gameBoard.playerScore = scoreHand(gameBoard.playerHand);
