@@ -7,6 +7,17 @@ body {
   background-image: radial-gradient(DarkGreen, green);
 }
 
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
 .vertical-center {
   min-height: 70%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 70vh; 
@@ -21,15 +32,15 @@ body {
 }
 
 .dealer-area {
-  height: 30vh;
+  height: 40vh;
 }
 
 .player-area {
-  height: 30vh;
+  height: 40vh;
 }
 
 .score-area {
-  height: 10vh;
+  height: 5vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -40,23 +51,12 @@ body {
 .score {
   height: 100%;
   padding: 0px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   color: white;
   text-align: center;
   background: #0E6655;
   display: block;
-}
-
-.no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-
-  > .col,
-  > [class*="col-"] {
-    padding-right: 0;
-    padding-left: 0;
-  }
 }
 
 .vcenter{
@@ -71,7 +71,7 @@ body {
 .test-box {
   height: 100%;
   padding: 0px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   text-align: center;
   background: #dbdfe5;
