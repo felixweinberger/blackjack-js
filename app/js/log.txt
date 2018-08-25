@@ -1,0 +1,14 @@
+--- double-check assert function and length of deck ---
+passed
+passed
+
+--- draw card from ordered deck ---
+passed
+[ Card { rank: '2', suit: 'H', cardString: '2H', image: 'img/2H.png' },
+  Card { rank: '3', suit: 'H', cardString: '3H', image: 'img/3H.png' } ]
+
+--- draw card from shuffled deck ---
+passed
+[ Card { rank: '9', suit: 'D', cardString: '9D', image: 'img/9D.png' },
+  Card { rank: '4', suit: 'S', cardString: '4S', image: 'img/4S.png' },
+  Card { rank: '4', suit: 'H', cardString: '4H', image: 'img/4H.png' } ]
