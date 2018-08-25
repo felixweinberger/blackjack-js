@@ -23,7 +23,7 @@ $(document).ready(function(){
     drawGameBoard(gameBoard, id);
   })
 
-  id. standButton.click(function() {
+  id.standButton.click(function() {
     while (doesDealerHit(gameBoard.dealerHand)) {
       gameBoard.dealerHand.push(drawCards(gameBoard.deck, 1)[0]);
     }
