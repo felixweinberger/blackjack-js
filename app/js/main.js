@@ -5,28 +5,30 @@
 $(document).ready(function(){
 
   let gameBoard = initializeNewGameBoard();
-  let hitButton = $("#hit-button");
-  let standButton = $("#stand-button");
-  let dealerCards = $("#dealer-cards");
-  let playerCards = $("#player-cards");
-  let dealerScore = $("#dealer-score");
-  let playerScore = $("#player-score");
-  let cardsLeft = $("#cards-left");
+  let id = {
+    hitButton: $("#hit-button"),
+    standButton: $("#stand-button"),
+    dealerCards: $("#dealer-cards"),
+    playerCards: $("#player-cards"),
+    dealerScore: $("#dealer-score"),
+    playerScore: $("#player-score"),
+    cardsLeft: $("#cards-left"),
+  };
 
-  drawGameBoard(gameBoard, dealerCards, playerCards, dealerScore, playerScore, cardsLeft);
+  drawGameBoard(gameBoard, id);
 
-  hitButton.click(function() {
+  id.hitButton.click(function() {
     gameBoard.playerHand.push(drawCards(gameBoard.deck, 1)[0]);
     gameBoard.playerScore = scoreHand(gameBoard.playerHand);
-    drawGameBoard(gameBoard, dealerCards, playerCards, dealerScore, playerScore, cardsLeft);
+    drawGameBoard(gameBoard, id);
   })
 
-  standButton.click(function() {
+  id. standButton.click(function() {
     while (doesDealerHit(gameBoard.dealerHand)) {
       gameBoard.dealerHand.push(drawCards(gameBoard.deck, 1)[0]);
     }
     gameBoard.dealerScore = scoreHand(gameBoard.playerHand);
-    drawGameBoard(gameBoard, dealerCards, playerCards, dealerScore, playerScore, cardsLeft);
+    drawGameBoard(gameBoard, id);
   })
 
 
@@ -80,18 +82,18 @@ class Card {
   }
 }
 
-function drawGameBoard(gameBoard, dealerCards, playerCards, dealerScore, playerScore, cardsLeft) {
-  cardsLeft.text(gameBoard.deck.length);
-  dealerCards.empty();
+function drawGameBoard(gameBoard, id) {
+  id.cardsLeft.text(gameBoard.deck.length);
+  id.dealerCards.empty();
   for (let card of gameBoard.dealerHand) {
-    dealerCards.append('<img src="' + card.image + '" width = "96" class="shadow">');
+    id.dealerCards.append('<img src="' + card.image + '" width = "96" class="shadow">');
   }
-  playerCards.empty();
+  id.playerCards.empty();
   for (let card of gameBoard.playerHand) {
-    playerCards.append('<img src="' + card.image + '" width = "96" class="shadow">');
+    id.playerCards.append('<img src="' + card.image + '" width = "96" class="shadow">');
   }
-  dealerScore.text(gameBoard.dealerScore.score);
-  playerScore.text(gameBoard.playerScore.score);
+  id.dealerScore.text(gameBoard.dealerScore.score);
+  id.playerScore.text(gameBoard.playerScore.score);
 }
 
 function initializeNewGameBoard() {
