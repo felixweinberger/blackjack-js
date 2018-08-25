@@ -50,12 +50,24 @@
 			<div class="container">
 
 				<!-- Dealer area -->
-			  <div class="row dealer-area no-gutters">
+			  <div class="row">
+			  	<div class="col-8">
+			    	<div class="value">
+				    	<p class="">Dealer: <span id="dealer-score"></span></p>
+			    	</div>
+			  	</div>
+			  	<div class="col-4">
+			    	<div class="value">
+				    	<p class="">Cards left: <span id="cards-left"></span></p>
+			    	</div>
+			  	</div>
+				</div>
 
+			  <div class="row dealer-area no-gutters">
 			  	<!-- Dealer cards -->
 			    <div class="col-8">
 			    	<div class="vcenter" id="dealer-cards">
-			    		<img src="img/QH.png" width="96" class="shadow">
+			    		<!-- <img src="img/QH.png" width="96" class="shadow"> -->
 			    	</div>
 			    </div>
 
@@ -67,29 +79,26 @@
 			  </div> <!-- End of dealer area -->
 
 			  <!-- Player area -->
-			  <div class="row player-area no-gutters">
+			  <div class="row">
+		    	<div class="value">
+			    	<p class="">Player: <span id="player-score"></span></p>
+		    	</div>
+				</div>
 
-			  	<!-- Player cards -->
+		  	<!-- Player cards -->
+			  <div class="row player-area no-gutters">
 			    <div class="col-8">
-			    	<div class="vcenter" id="player-cards">
-				    	<img src="img/KH.png" width="96" class="shadow">
+				    	<div class="vcenter" id="player-cards">
+				    	<!-- <img src="img/KH.png" width="96" class="shadow"> -->
 			    	</div>
 			    </div>
 
 			    <!-- Buttons -->
 			    <div class="col-4 container">
-				    <div class="row player-area">
-					    <div class="col-12 player-hit">
-				      	<div class="vcenter">
-					      	<button type="button" class="btn btn-primary btn-block border border-light shadow" id="hit-button">Hit (h)</button>
-				      	</div>
-					    </div>
-					    <div class="col-12 player-stand">
-				      	<div class="vcenter">
-					      	<button type="button" class="btn btn-primary btn-block border border-light shadow" id="stand-button">Stand (s)</button>
-				      	</div>
-					    </div>
-					  </div>
+		      	<div class="vcenter">
+			      	<button type="button" class="btn btn-primary btn-block border border-light shadow" id="hit-button">Hit (h)</button>
+			      	<button type="button" class="btn btn-primary btn-block border border-light shadow" id="stand-button">Stand (s)</button>
+		      	</div>
 			    </div>
 
 			  </div> <!-- End of player area -->

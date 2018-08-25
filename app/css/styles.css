@@ -32,11 +32,11 @@ body {
 }
 
 .dealer-area {
-  height: 40vh;
+  height: 35vh;
 }
 
 .player-area {
-  height: 40vh;
+  height: 35vh;
 }
 
 .score-area {
@@ -46,6 +46,15 @@ body {
 
 .shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.value {
+  padding: 0px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+  display: inline;
 }
 
 .score {

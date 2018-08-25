@@ -1,46 +1,38 @@
+/**
+ * Main game logic
+ */
+
 $(document).ready(function(){
 
+  let gameBoard = initializeNewGameBoard();
   let hitButton = $("#hit-button");
   let standButton = $("#stand-button");
-  let dealerCards = $(".dealer-cards");
-  let playerCards = $(".player-cards");
-  let gameBoard = initializeNewGameBoard();
+  let dealerCards = $("#dealer-cards");
+  let playerCards = $("#player-cards");
+  let dealerScore = $("#dealer-score");
+  let playerScore = $("#player-score");
+  let cardsLeft = $("#cards-left");
+
+  drawGameBoard(gameBoard, dealerCards, playerCards, dealerScore, playerScore, cardsLeft);
 
   hitButton.click(function() {
-
+    gameBoard.playerHand.push(drawCards(gameBoard.deck, 1)[0]);
+    gameBoard.playerScore = scoreHand(gameBoard.playerHand);
+    drawGameBoard(gameBoard, dealerCards, playerCards, dealerScore, playerScore, cardsLeft);
   })
 
-  // prepare the game...
-  //    initialise a game state
-  //    create the deck from the cardSet
-  //    shuffle the deck
+  standButton.click(function() {
+    while (doesDealerHit(gameBoard.dealerHand)) {
+      gameBoard.dealerHand.push(drawCards(gameBoard.deck, 1)[0]);
+    }
+    gameBoard.dealerScore = scoreHand(gameBoard.playerHand);
+    drawGameBoard(gameBoard, dealerCards, playerCards, dealerScore, playerScore, cardsLeft);
+  })
 
-  // session loop...
-    // draw two cards for the dealer
-    // draw two cards for the player
-
-    // draw the game state to the DOM
-    // show the first dealer card
-    // show the player hand
 
     // game loop...
 
       // draw the current game state to the html
-
-      // listen for hit or stand
-      // if hit...
-      //    draw a card from the deck
-      hitButton.click(function() {
-        // to do
-        // draw a card from the top of the deck
-        // attach the card image to the player area
-      });
-
-      // if stand...
-      //    complete the dealer draw
-      standButton.click(function() {
-        // to do
-      })
 
       // if dealer has blackjack...
       //    increase played by 1
@@ -86,6 +78,20 @@ class Card {
     this.cardString = cardString;
     this.image = image;
   }
+}
+
+function drawGameBoard(gameBoard, dealerCards, playerCards, dealerScore, playerScore, cardsLeft) {
+  cardsLeft.text(gameBoard.deck.length);
+  dealerCards.empty();
+  for (let card of gameBoard.dealerHand) {
+    dealerCards.append('<img src="' + card.image + '" width = "96" class="shadow">');
+  }
+  playerCards.empty();
+  for (let card of gameBoard.playerHand) {
+    playerCards.append('<img src="' + card.image + '" width = "96" class="shadow">');
+  }
+  dealerScore.text(gameBoard.dealerScore.score);
+  playerScore.text(gameBoard.playerScore.score);
 }
 
 function initializeNewGameBoard() {
