@@ -1,13 +1,19 @@
+/**
+ * Helper functions for underlying game logic
+ */
+
 const CARD_SET = {
   suits: ['H', 'S', 'D', 'C'],
   ranks: [2, 3, 4, 5, 6, 7, 8, 9, 0, 'J', 'Q', 'K', 'A'],
 }
 
 class GameBoard {
-  contstructor() {
-    this.deck;
-    this.dealerHand;
-    this.playerHand;
+  constructor(deck, dealerHand, playerHand) {
+    this.deck = deck;
+    this.dealerHand = dealerHand;
+    this.dealerScore = scoreHand(dealerHand);
+    this.playerHand = playerHand;
+    this.playerScore = scoreHand(playerHand);
     this.playerWins = 0;
     this.playerGame = 0;
   }
@@ -28,9 +34,12 @@ function drawGameState(gameBoard) {
   // clear
 }
 
-function initializeGame() {
-  // initializes the game
-  // returns a new GameState Object
+function initializeNewGameBoard() {
+  let deck = createDeck(CARD_SET);
+  shuffleDeck(deck);
+  let dealerHand = drawCards(deck, 1);
+  let playerHand = drawCards(deck, 2);
+  return new GameBoard(deck, dealerHand, playerHand);
 }
 
 function doesDealerHit(dealerHand) {
@@ -129,3 +138,7 @@ console.log(scoreHand(hand));
 
 console.log('\n--- does the dealer hit? ---');
 console.log(doesDealerHit(hand));
+
+console.log('\n--- initializing the gameBoard ---');
+let gameBoard = initializeNewGameBoard();
+console.log(gameBoard);
