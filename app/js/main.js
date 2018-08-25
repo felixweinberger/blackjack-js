@@ -15,6 +15,7 @@ $(document).ready(function(){
     playerScore: $('#player-score'),
     gamesPlayed: $('#games-played'),
     gamesWon: $('#games-won'),
+    gamesLost: $('#games-lost'),
     cardsLeft: $('#cards-left'),
   };
 
@@ -34,8 +35,11 @@ $(document).ready(function(){
 
     gameBoard.playerHand.push(drawCards(gameBoard.deck, 1)[0]);
     gameBoard.playerScore = scoreHand(gameBoard.playerHand);
+    
     if (hasPlayerLost(gameBoard)) {
       gameBoard.roundFinished = true;
+      gameBoard.playerGames += 1;
+      gameBoard.playerLosses += 1;
     }
 
     drawGameBoard(gameBoard, id);
@@ -51,6 +55,14 @@ $(document).ready(function(){
     }
     gameBoard.dealerScore = scoreHand(gameBoard.dealerHand);
     gameBoard.roundFinished = true;
+    gameBoard.playerGames += 1;
+
+    if (hasPlayerWon(gameBoard)) {
+      gameBoard.playerWins += 1;
+    } else {
+      gameBoard.playerLosses += 1;
+    }
+
     drawGameBoard(gameBoard, id);
   });
 
@@ -69,6 +81,7 @@ class GameBoard {
     this.playerHand;
     this.playerScore = 0;
     this.playerWins = 0;
+    this.playerLosses = 0;
     this.playerGames = 0;
     this.roundFinished = true;
   }
@@ -114,15 +127,16 @@ function drawGameBoard(gameBoard, id) {
   id.cardsLeft.text(gameBoard.deck.length);
   id.dealerCards.empty();
   for (let card of gameBoard.dealerHand) {
-    id.dealerCards.append('<img src="' + card.image + '" width = "96" class="shadow">');
+    id.dealerCards.append('<img src="' + card.image + '" width = "120" class="shadow">');
   }
   id.playerCards.empty();
   for (let card of gameBoard.playerHand) {
-    id.playerCards.append('<img src="' + card.image + '" width = "96" class="shadow">');
+    id.playerCards.append('<img src="' + card.image + '" width = "120" class="shadow">');
   }
   id.playerScore.text(gameBoard.playerScore.score);
   id.dealerScore.text(gameBoard.dealerScore.score);
   id.gamesWon.text(gameBoard.playerWins);
+  id.gamesLost.text(gameBoard.playerLosses);
   id.gamesPlayed.text(gameBoard.playerGames);
 }
 
