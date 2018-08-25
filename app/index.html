@@ -42,22 +42,26 @@
 		      <li class="nav-item">
 		        <a class="nav-link" target="_blank" href="https://github.com/felixweinberger/blackjack">Github</a>
 		      </li>
-		  </div>
-		</nav>
+		 		</ul>
+		    <div class="navbar-text my-2 my-lg-0">
+		    	<em>Please deactivate any adblockers</em>
+		    </div>	
+		 	</div>
+  	</nav>
 
 		<!-- Game area -->
 		<div class="game-area vertical-center">
 			<div class="container">
 
 				<!-- Dealer area -->
-			  <div class="row">
+			  <div class="row no-gutters">
 			  	<div class="col-8">
 			    	<div class="value">
 				    	<p class="">Dealer: <span id="dealer-score"></span></p>
 			    	</div>
 			  	</div>
 			  	<div class="col-4">
-			    	<div class="value">
+			    	<div class="value text-center">
 				    	<p class="">Cards left: <span id="cards-left"></span></p>
 			    	</div>
 			  	</div>
@@ -67,7 +71,6 @@
 			  	<!-- Dealer cards -->
 			    <div class="col-8">
 			    	<div class="vcenter" id="dealer-cards">
-			    		<!-- <img src="img/QH.png" width="96" class="shadow"> -->
 			    	</div>
 			    </div>
 
@@ -79,7 +82,7 @@
 			  </div> <!-- End of dealer area -->
 
 			  <!-- Player area -->
-			  <div class="row">
+			  <div class="row no-gutters">
 		    	<div class="value">
 			    	<p class="">Player: <span id="player-score"></span></p>
 		    	</div>
@@ -96,8 +99,10 @@
 			    <!-- Buttons -->
 			    <div class="col-4 container">
 		      	<div class="vcenter">
-			      	<button type="button" class="btn btn-primary btn-block border border-light shadow" id="hit-button">Hit (h)</button>
-			      	<button type="button" class="btn btn-primary btn-block border border-light shadow" id="stand-button">Stand (s)</button>
+			      	<button type="button" class="btn btn-primary btn-block border border-light shadow" id="hit-button">Hit</button>
+			      	<button type="button" class="btn btn-primary btn-block border border-light shadow" id="stand-button">Stand</button>
+			      	<hr>
+			      	<button type="button" class="btn btn-secondary btn-block border border-light shadow" id="new-button">New</button>
 		      	</div>
 			    </div>
 

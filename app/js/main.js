@@ -6,18 +6,27 @@ $(document).ready(function(){
 
   let gameBoard = initializeNewGameBoard();
   let id = {
-    hitButton: $("#hit-button"),
-    standButton: $("#stand-button"),
-    dealerCards: $("#dealer-cards"),
-    playerCards: $("#player-cards"),
-    dealerScore: $("#dealer-score"),
-    playerScore: $("#player-score"),
-    cardsLeft: $("#cards-left"),
+    hitButton: $('#hit-button'),
+    standButton: $('#stand-button'),
+    newButton: $('#new-button'),
+    dealerCards: $('#dealer-cards'),
+    playerCards: $('#player-cards'),
+    dealerScore: $('#dealer-score'),
+    playerScore: $('#player-score'),
+    gamesPlayed: $('#games-played'),
+    gamesWon: $('#games-won'),
+    cardsLeft: $('#cards-left'),
   };
 
-  drawGameBoard(gameBoard, id);
+  id.newButton.click(function() {
+    newRound(gameBoard);
+    drawGameBoard(gameBoard, id);
+  })
 
   id.hitButton.click(function() {
+    if (hasPlayerLost(gameBoard)) {
+      return;
+    }
     gameBoard.playerHand.push(drawCards(gameBoard.deck, 1)[0]);
     gameBoard.playerScore = scoreHand(gameBoard.playerHand);
     drawGameBoard(gameBoard, id);
@@ -27,32 +36,13 @@ $(document).ready(function(){
     while (doesDealerHit(gameBoard.dealerHand)) {
       gameBoard.dealerHand.push(drawCards(gameBoard.deck, 1)[0]);
     }
-    gameBoard.dealerScore = scoreHand(gameBoard.playerHand);
+    gameBoard.dealerScore = scoreHand(gameBoard.dealerHand);
+    if (hasPlayerWon(gameBoard)) {
+      gameBoard.playerWins += 1;
+      gameBoard.playerGames += 1;
+    }
     drawGameBoard(gameBoard, id);
   })
-
-
-    // game loop...
-
-      // draw the current game state to the html
-
-      // if dealer has blackjack...
-      //    increase played by 1
-      //    clear game state and break out of loop
-
-      // if player has blackjack...
-      //    increase played by 1
-      //    increase won by 1
-      //    clear game state and break out of loop
-
-      // if dealer wins...
-      //    increase played by 1
-      //    clear game state and break out of loop
-
-      // if player wins...
-      //    increase played by 1
-      //    increase won by 1
-      //    clear game state and break out of loop 
 
 });
 
@@ -62,14 +52,14 @@ const CARD_SET = {
 }
 
 class GameBoard {
-  constructor(deck, dealerHand, playerHand) {
+  constructor(deck) {
     this.deck = deck;
-    this.dealerHand = dealerHand;
-    this.dealerScore = scoreHand(dealerHand);
-    this.playerHand = playerHand;
-    this.playerScore = scoreHand(playerHand);
+    this.dealerHand;
+    this.dealerScore = 0;
+    this.playerHand;
+    this.playerScore = 0;
     this.playerWins = 0;
-    this.playerGame = 0;
+    this.playerGames = 0;
   }
 }
 
@@ -79,6 +69,32 @@ class Card {
     this.suit = suit;
     this.cardString = cardString;
     this.image = image;
+  }
+}
+
+function newRound(gameBoard) {
+  gameBoard.dealerHand = drawCards(gameBoard.deck, 1);
+  gameBoard.playerHand = drawCards(gameBoard.deck, 2);
+  gameBoard.playerScore = scoreHand(gameBoard.playerHand);
+  gameBoard.dealerScore = scoreHand(gameBoard.dealerHand);
+}
+
+function hasPlayerLost(gameBoard) {
+  if (gameBoard.playerScore.score > 21) {
+    return true;
+  }
+  return false;
+}
+
+function hasPlayerWon(gameBoard) {
+  if (gameBoard.playerScore.score === 21 && gameBoard.playerHand.length === 2 && gameBoard.dealerScore.score !== 21 && gameBoard.dealerHand.length !== 2) {
+    return true;
+  } else if (gameBoard.playerScore.score > gameBoard.dealerScore.score && gameBoard.playerScore.score <= 21) {
+    return true;
+  } else if (gameBoard.playerScore.score <= 21 && gameBoard.dealerScore.score > 21) {
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -92,16 +108,16 @@ function drawGameBoard(gameBoard, id) {
   for (let card of gameBoard.playerHand) {
     id.playerCards.append('<img src="' + card.image + '" width = "96" class="shadow">');
   }
-  id.dealerScore.text(gameBoard.dealerScore.score);
   id.playerScore.text(gameBoard.playerScore.score);
+  id.dealerScore.text(gameBoard.dealerScore.score);
+  id.gamesWon.text(gameBoard.playerWins);
+  id.gamesPlayed.text(gameBoard.playerGames);
 }
 
 function initializeNewGameBoard() {
   let deck = createDeck(CARD_SET);
   shuffleDeck(deck);
-  let dealerHand = drawCards(deck, 1);
-  let playerHand = drawCards(deck, 2);
-  return new GameBoard(deck, dealerHand, playerHand);
+  return new GameBoard(deck);
 }
 
 function doesDealerHit(dealerHand) {
@@ -163,19 +179,11 @@ function createDeck(cardSet) {
   for (let i = 0; i < 6; i++) {
     for (let suit of cardSet.suits) {
       for (let rank of cardSet.ranks) {
-        let cardString = String(rank) + suit;
-        let image = 'img/' + cardString + '.png';
+        let cardString = String(rank) + String(suit);
+        let image = 'img/' + String(cardString) + '.png';
         deck.push(new Card(String(rank), String(suit), cardString, image));
       }
     }
   }
   return deck;
-}
-
-function assert(expectedBehavior, desiredBehavior) {
-  if (!expectedBehavior) {
-    console.log('FAILED, ' + desiredBehavior);
-  } else {
-    console.log('passed');
-  }
 }
