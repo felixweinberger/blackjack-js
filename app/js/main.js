@@ -70,7 +70,7 @@ $(document).ready(function(){
 
 const CARD_SET = {
   suits: ['H', 'S', 'D', 'C'],
-  ranks: [2, 3, 4, 5, 6, 7, 8, 9, 0, 'J', 'Q', 'K', 'A'],
+  ranks: [2, 3, 4, 5, 6, 7, 8, 9, 0, 'J', 'Q', 'K', 'Ace'],
 }
 
 class GameBoard {
@@ -158,7 +158,7 @@ function scoreHand(hand) {
 
   // compute the score of non-ace cards only
   for (let card of hand) {
-    if (card.rank === 'A') {
+    if (card.rank === 'Ace') {
       acesInHand += 1;
     } else if ('0JQK'.indexOf(card.rank) !== -1) {
       nonAcesScore += 10;
