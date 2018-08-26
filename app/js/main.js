@@ -1,7 +1,4 @@
-/**
- * Main game logic
- */
-
+/* Main game logic */
 $(document).ready(function(){
 
   let gameBoard = initializeNewGameBoard();
@@ -68,11 +65,13 @@ $(document).ready(function(){
 
 });
 
+/* Describes the cards in the set (rank, suit) */
 const CARD_SET = {
   suits: ['H', 'S', 'D', 'C'],
   ranks: [2, 3, 4, 5, 6, 7, 8, 9, 0, 'J', 'Q', 'K', 'Ace'],
 }
 
+/* Describes the game state */
 class GameBoard {
   constructor(deck) {
     this.deck = deck;
@@ -87,6 +86,7 @@ class GameBoard {
   }
 }
 
+/* Describes a card */
 class Card {
   constructor(rank, suit, cardString, image) {
     this.rank = rank;
@@ -96,6 +96,7 @@ class Card {
   }
 }
 
+/* Starts a new round, given a current game state */
 function newRound(gameBoard) {
   gameBoard.roundFinished = false;
   gameBoard.dealerHand = drawCards(gameBoard.deck, 1);
@@ -104,6 +105,7 @@ function newRound(gameBoard) {
   gameBoard.dealerScore = scoreHand(gameBoard.dealerHand);
 }
 
+/* Checks if the player has lost given the current game state and returns a boolean */
 function hasPlayerLost(gameBoard) {
   if (gameBoard.playerScore.score > 21) {
     return true;
@@ -111,6 +113,7 @@ function hasPlayerLost(gameBoard) {
   return false;
 }
 
+/* Checks if the player has won given the current game state and returns a boolean */
 function hasPlayerWon(gameBoard) {
   if (gameBoard.playerScore.score === 21 && gameBoard.playerHand.length === 2 && gameBoard.dealerScore.score !== 21 && gameBoard.dealerHand.length !== 2) {
     return true;
@@ -123,6 +126,7 @@ function hasPlayerWon(gameBoard) {
   }
 }
 
+/* Draws the game state to the DOM */
 function drawGameBoard(gameBoard, id) {
   id.cardsLeft.text(gameBoard.deck.length);
   id.dealerCards.empty();
@@ -140,17 +144,20 @@ function drawGameBoard(gameBoard, id) {
   id.gamesPlayed.text(gameBoard.playerGames);
 }
 
+/* Starts a new game, returning a gameBoard object including a shuffled deck */
 function initializeNewGameBoard() {
   let deck = createDeck(CARD_SET);
   shuffleDeck(deck);
   return new GameBoard(deck);
 }
 
+/* Checks if a dealer has to hit (soft 17 is hit) */
 function doesDealerHit(dealerHand) {
   let handScore = scoreHand(dealerHand);
   return handScore.score < 17 || (handScore.score === 17 && handScore.soft === true);
 }
 
+/* Computes the score of a hand returning an object of form {score: num, soft: true/false} */
 function scoreHand(hand) {
   let nonAcesScore = 0;
   let acesInHand = 0;
@@ -185,6 +192,7 @@ function scoreHand(hand) {
   }
 }
 
+/* Draws a specified number of cards to the deck and returns then as an array of card objects */
 function drawCards(deck, numberOfCards) {
   let drawnCards = [];
   for (let i = 0; i < numberOfCards; i++) {
@@ -193,6 +201,7 @@ function drawCards(deck, numberOfCards) {
   return drawnCards;
 }
 
+/* Shuffles a deck (array of cards) using the Fisher-Yates algorithm */
 function shuffleDeck(deck) {
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -200,6 +209,7 @@ function shuffleDeck(deck) {
   }
 }
 
+/* Creates a blackjack deck of cards (6 standard decks) */
 function createDeck(cardSet) {
   let deck = [];
   for (let i = 0; i < 6; i++) {
