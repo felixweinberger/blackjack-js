@@ -1,4 +1,6 @@
-import('./helpers.js');
+/** 
+ * Tests
+ */
 
 console.log('--- double-check assert function and length of deck ---');
 assert(1 === 1, 'should correctly pass the test')
