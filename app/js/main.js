@@ -101,11 +101,14 @@ function stand(gameBoard, id) {
   drawGameBoard(gameBoard, id);
 }
 
-/* Starts a new round, given a current game state */
+/* New round */
 function newRound(gameBoard, id) {
+  // If the round hasn't finished, don't do anything yet
   if (!gameBoard.roundFinished) {
     return 0;
   }
+
+  // Draw new cards, score the hands and update the game board
   gameBoard.roundFinished = false;
   gameBoard.dealerHand = drawCards(gameBoard.deck, 1);
   gameBoard.playerHand = drawCards(gameBoard.deck, 2);
@@ -210,7 +213,7 @@ function drawCards(deck, numberOfCards) {
   return drawnCards;
 }
 
-/* Shuffles a deck (array of cards) using the Fisher-Yates algorithm */
+/* Shuffles a deck (array of cards) in place using the Fisher-Yates algorithm */
 function shuffleDeck(deck) {
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
