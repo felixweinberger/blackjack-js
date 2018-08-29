@@ -13,7 +13,10 @@ $(document).ready(function() {
     gamesWon: $('#games-won'),
     gamesLost: $('#games-lost'),
     cardsLeft: $('#cards-left'),
+    messageArea: $('#message-area')
   };
+
+  alertNew(id);
 
   id.newButton.click(function() {
     newRound(gameBoard, id);

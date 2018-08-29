@@ -40,6 +40,7 @@ function hit(gameBoard, id) {
   gameBoard.playerHand.push(drawCards(gameBoard.deck, 1)[0]);
   gameBoard.playerScore = scoreHand(gameBoard.playerHand);
   if (hasPlayerLost(gameBoard)) {
+    alertLoss(id);
     gameBoard.roundFinished = true;
     gameBoard.playerGames += 1;
     gameBoard.playerLosses += 1;
@@ -64,8 +65,10 @@ function stand(gameBoard, id) {
   gameBoard.roundFinished = true;
   gameBoard.playerGames += 1;
   if (hasPlayerWon(gameBoard)) {
+    alertWin(id);
     gameBoard.playerWins += 1;
   } else {
+    alertLoss(id);
     gameBoard.playerLosses += 1;
   }
   drawGameBoard(gameBoard, id);
@@ -79,12 +82,40 @@ function newRound(gameBoard, id) {
   }
 
   // Draw new cards, score the hands and update the game board
+  clearMessage(id);
   gameBoard.roundFinished = false;
   gameBoard.dealerHand = drawCards(gameBoard.deck, 1);
   gameBoard.playerHand = drawCards(gameBoard.deck, 2);
   gameBoard.playerScore = scoreHand(gameBoard.playerHand);
   gameBoard.dealerScore = scoreHand(gameBoard.dealerHand);
   drawGameBoard(gameBoard, id);
+}
+
+/* Alert player of loss */
+function alertLoss(id) {
+  id.messageArea.addClass('alert-danger');
+  id.messageArea.removeClass('invisible');
+  id.messageArea.html("<b>You lose.</b> <em>Press 'New round' to play again.</em>")
+}
+
+/* Alert player of win */
+function alertWin(id) {
+  id.messageArea.addClass('alert-success');
+  id.messageArea.removeClass('invisible');
+  id.messageArea.html('<b>You win!</b> <em>Press "New round" to play again.</em>')
+}
+
+/* Alert player to start new round */
+function alertNew(id) {
+  id.messageArea.addClass('alert-secondary');
+  id.messageArea.removeClass('invisible');
+  id.messageArea.html('<b>Welcome!</b> <em>Press "New round" to play.</em>')
+}
+
+/* Clear any alerts to the player */
+function clearMessage(id) {
+  id.messageArea.removeClass('alert-secondary alert-success alert-danger');
+  id.messageArea.addClass('invisible');
 }
 
 /* Checks if the player has lost given the current game state and returns a boolean */

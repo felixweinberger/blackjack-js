@@ -73,17 +73,3 @@ body {
   top: 50%;
   transform: translateY(-50%); 
 }
-
-/* Here be dragons */
-
-/* Only for test purposes*/
-.test-box {
-  height: 100%;
-  padding: 0px;
-  font-size: 10px;
-  font-weight: bold;
-  text-align: center;
-  background: #dbdfe5;
-  display: block;
-}
-
