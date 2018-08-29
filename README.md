@@ -32,7 +32,7 @@ Live version currently running [here](blackjack.felixweinberger.com)
 1. You can choose one of two options:
     + Hit: the dealer deals you an additional card to your hand, increasing your hand value. You may hit until you either choose to stand or exceed 21 in hand value, in which case you lose.
     + Stand: you are no longer dealt additional cards and the dealer draws cards until he has at least 17 points or exceeds 21
-1. Once all the cards are dealt, the hand values are score and the winner is determined
+1. Once all the cards are dealt, the hand values are scored and the winner is determined
 1. You win if:
     + Your hand value does not exceed 21 _and_ your dealer's hand value exceeds 21
     + Your hand value does not exceed 21 _and_ your hand value is higher than the dealer's
