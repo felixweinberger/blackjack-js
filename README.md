@@ -9,7 +9,7 @@ Live version currently running [here](blackjack.felixweinberger.com)
 1. [How to play](#how-to-play)
     1. [Basics](#basics)
     1. [How a round is played](#how-a-round-is-played)
-1. [Development](#development)
+1. [Running the game locally](#running-the-game-locally)
 1. [Developing the game](#developing-the-game)
 
 <!-- /MarkdownTOC -->
@@ -37,7 +37,7 @@ Live version currently running [here](blackjack.felixweinberger.com)
     + Your hand value does not exceed 21 _and_ your dealer's hand value exceeds 21
     + Your hand value does not exceed 21 _and_ your hand value is higher than the dealer's
 
-## Development
+## Running the game locally
 
 To run the game on your local machine you will need to have [Vagrant](https://www.vagrantup.com/) and [Virtual Box](https://www.virtualbox.org/wiki/Downloads) installed. 
 
