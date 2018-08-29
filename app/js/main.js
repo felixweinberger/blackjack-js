@@ -1,6 +1,5 @@
-/* Main game logic */
-$(document).ready(function(){
-
+/* On successful pageload, initialize a new game and listen for the 3 player actions */
+$(document).ready(function() {
   let gameBoard = initializeNewGameBoard();
   let id = {
     hitButton: $('#hit-button'),
@@ -17,52 +16,16 @@ $(document).ready(function(){
   };
 
   id.newButton.click(function() {
-    if (!gameBoard.roundFinished) {
-      return 0;
-    }
-
-    newRound(gameBoard);
-    drawGameBoard(gameBoard, id);
+    newRound(gameBoard, id);
   });
 
   id.hitButton.click(function() {
-    if (gameBoard.roundFinished) {
-      return 0;
-    }
-
-    gameBoard.playerHand.push(drawCards(gameBoard.deck, 1)[0]);
-    gameBoard.playerScore = scoreHand(gameBoard.playerHand);
-    
-    if (hasPlayerLost(gameBoard)) {
-      gameBoard.roundFinished = true;
-      gameBoard.playerGames += 1;
-      gameBoard.playerLosses += 1;
-    }
-
-    drawGameBoard(gameBoard, id);
+    hit(gameBoard, id);
   });
 
   id.standButton.click(function() {
-    if (gameBoard.roundFinished) {
-      return 0;
-    }
-
-    while (doesDealerHit(gameBoard.dealerHand)) {
-      gameBoard.dealerHand.push(drawCards(gameBoard.deck, 1)[0]);
-    }
-    gameBoard.dealerScore = scoreHand(gameBoard.dealerHand);
-    gameBoard.roundFinished = true;
-    gameBoard.playerGames += 1;
-
-    if (hasPlayerWon(gameBoard)) {
-      gameBoard.playerWins += 1;
-    } else {
-      gameBoard.playerLosses += 1;
-    }
-
-    drawGameBoard(gameBoard, id);
+    stand(gameBoard, id);
   });
-
 });
 
 /* Describes the cards in the set (rank, suit) */
@@ -96,13 +59,59 @@ class Card {
   }
 }
 
+/* Hit */
+function hit(gameBoard, id) {
+  // If the round has finished, don't do anything 
+  if (gameBoard.roundFinished) {
+    return 0;
+  }
+
+  // Draw a card, check if the player has lost and update the gameBoard
+  gameBoard.playerHand.push(drawCards(gameBoard.deck, 1)[0]);
+  gameBoard.playerScore = scoreHand(gameBoard.playerHand);
+  if (hasPlayerLost(gameBoard)) {
+    gameBoard.roundFinished = true;
+    gameBoard.playerGames += 1;
+    gameBoard.playerLosses += 1;
+  }
+  drawGameBoard(gameBoard, id);
+}
+
+/* Stand */
+function stand(gameBoard, id) {
+  // If the round has finished, don't do anything
+  if (gameBoard.roundFinished) {
+    return 0;
+  }
+
+  // Only draw cards if the dealer has <= soft 17
+  while (doesDealerHit(gameBoard.dealerHand)) {
+    gameBoard.dealerHand.push(drawCards(gameBoard.deck, 1)[0]);
+  }
+
+  // Update scores and check if the player won and draw the game state
+  gameBoard.dealerScore = scoreHand(gameBoard.dealerHand);
+  gameBoard.roundFinished = true;
+  gameBoard.playerGames += 1;
+  if (hasPlayerWon(gameBoard)) {
+    gameBoard.playerWins += 1;
+  } else {
+    gameBoard.playerLosses += 1;
+  }
+  drawGameBoard(gameBoard, id);
+}
+
 /* Starts a new round, given a current game state */
-function newRound(gameBoard) {
+function newRound(gameBoard, id) {
+  if (!gameBoard.roundFinished) {
+    return 0;
+  }
   gameBoard.roundFinished = false;
   gameBoard.dealerHand = drawCards(gameBoard.deck, 1);
   gameBoard.playerHand = drawCards(gameBoard.deck, 2);
   gameBoard.playerScore = scoreHand(gameBoard.playerHand);
   gameBoard.dealerScore = scoreHand(gameBoard.dealerHand);
+  drawGameBoard(gameBoard, id);
 }
 
 /* Checks if the player has lost given the current game state and returns a boolean */
