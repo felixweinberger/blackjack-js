@@ -81,6 +81,11 @@ function newRound(gameBoard, id) {
     return 0;
   }
 
+  // If one of the decks have been shuffled through, reshuffle and replace the deck
+  if (gameBoard.deck.length < 52 * 5) {
+    gameBoard.deck = createDeck(CARD_SET);
+  }
+
   // Draw new cards, score the hands and update the game board
   clearMessage(id);
   gameBoard.roundFinished = false;
