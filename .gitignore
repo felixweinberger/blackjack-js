@@ -1,6 +1,7 @@
 # local working files
 .DS_Store
 *.sublime-workspace
+.vscode/
 
 # Logs
 logs
