@@ -2,8 +2,6 @@
 
 A simple blackjack game without betting. 
 
-Live version currently running [here](blackjack.felixweinberger.com)
-
 <!-- MarkdownTOC -->
 
 1. [How to play](#how-to-play)
