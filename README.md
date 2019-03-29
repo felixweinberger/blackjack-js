@@ -2,19 +2,7 @@
 
 *A simple blackjack game without betting using only HTML/CSS/JS & jQuery.*
 
-<<<<<<< HEAD
-<!-- MarkdownTOC -->
-
-1. [How to play](#how-to-play)
-    1. [Basics](#basics)
-    1. [How a round is played](#how-a-round-is-played)
-1. [Running the game locally](#running-the-game-locally)
-1. [Developing the game](#developing-the-game)
-
-<!-- /MarkdownTOC -->
-=======
 ![Blackjack](screenshots/blackjack.png)
->>>>>>> docs(readme): update documentation for easier local running and add screenshot
 
 ## How to play
 
@@ -53,11 +41,7 @@ cd blackjack-js
 npm install -g http-server
 
 # Run the server with caching disabled (for easier development)
-http-server -c-1
+http-server -c-1 app
 ```
 
-<<<<<<< HEAD
-The initialization script initialize.sh takes care of installing the apache webserver as well as zsh for a better command-line interface.
-=======
-When the server is up and running, point your browser to `localhost:8080` to try the game.
->>>>>>> docs(readme): update documentation for easier local running and add screenshot
+When the server is up and running, point your browser to `localhost:8080` to play the game.

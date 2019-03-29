@@ -1,4 +1,3 @@
-/* On successful pageload, initialize a new game and listen for the 3 player actions */
 $(document).ready(function() {
   let gameBoard = initializeNewGameBoard();
   let id = {
