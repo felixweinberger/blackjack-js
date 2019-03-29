@@ -1,6 +1,8 @@
 # Blackjack-js
 
-*A simple blackjack game without betting using only HTML/CSS/JS & jQuery.*
+*A simple blackjack game without betting using only HTML/CSS/JS & jQuery*
+
+[Live version](https://felixweinberger.com/blackjack-js/) currently running on GitHub Pages.
 
 ![Blackjack](screenshots/blackjack.png)
 
