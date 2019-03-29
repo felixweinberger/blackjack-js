@@ -1,7 +1,8 @@
-# Blackjack
+# Blackjack-js
 
-A simple blackjack game without betting. 
+*A simple blackjack game without betting using only HTML/CSS/JS & jQuery.*
 
+<<<<<<< HEAD
 <!-- MarkdownTOC -->
 
 1. [How to play](#how-to-play)
@@ -11,6 +12,9 @@ A simple blackjack game without betting.
 1. [Developing the game](#developing-the-game)
 
 <!-- /MarkdownTOC -->
+=======
+![Blackjack](screenshots/blackjack.png)
+>>>>>>> docs(readme): update documentation for easier local running and add screenshot
 
 ## How to play
 
@@ -35,16 +39,25 @@ A simple blackjack game without betting.
     + Your hand value does not exceed 21 _and_ your dealer's hand value exceeds 21
     + Your hand value does not exceed 21 _and_ your hand value is higher than the dealer's
 
-## Running the game locally
+## Running/developing the game locally
 
-To run the game on your local machine you will need to have [Vagrant](https://www.vagrantup.com/) and [Virtual Box](https://www.virtualbox.org/wiki/Downloads) installed. 
+The easiest way to run the game locally is to use the NPM package `http-server`:
 
-Once that's installed, you can go to the vagrant folder, open a terminal and run `vagrant up`. This can take a few minutes, as the webserver downloads updates and installs apache. 
+```
+# Clone the code
+cd ~/projects
+git clone https://github.com/felixweinberger/blackjack-js
+cd blackjack-js
 
-When the server is up and running, you can point your browser at `localhost:8080` to play the game.
+# Install http-server
+npm install -g http-server
 
-## Developing the game
+# Run the server with caching disabled (for easier development)
+http-server -c-1
+```
 
-This repository includes a vagrant configuration. Running `vagrant up` automatically mounts the `app` folder including the necessary files to /var/www/html within the server.
-
+<<<<<<< HEAD
 The initialization script initialize.sh takes care of installing the apache webserver as well as zsh for a better command-line interface.
+=======
+When the server is up and running, point your browser to `localhost:8080` to try the game.
+>>>>>>> docs(readme): update documentation for easier local running and add screenshot

@@ -1,1 +1,0 @@
-{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"/Users/felix/Dropbox/Projects/2018/blackjack/app","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/felix/Dropbox/Projects/2018/blackjack/vagrant","disabled":false,"__vagrantfile":true}}}
