@@ -43,7 +43,7 @@
 
 The easiest way to run the game locally is to use the NPM package `http-server`:
 
-```
+```sh
 # Clone the code
 cd ~/projects
 git clone https://github.com/felixweinberger/blackjack-js
