@@ -41,7 +41,7 @@ cd blackjack-js
 npm install -g http-server
 
 # Run the server with caching disabled (for easier development)
-http-server -c-1 app
+http-server -c-1
 ```
 
 When the server is up and running, point your browser to `localhost:8080` to play the game.
